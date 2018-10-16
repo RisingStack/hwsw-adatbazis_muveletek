@@ -1,5 +1,8 @@
 const { Router } = require('express');
-const getCurrency = require('./currency');
+const getCurrency = require('../currency');
+const {
+  get, list, insert, update, remove,
+} = require('./expenseHandler');
 
 const router = Router();
 
@@ -14,5 +17,11 @@ router.get('/currency', async (req, res) => {
 
   res.send({ message: 'ok', value: result.value });
 });
+
+router.get('/expenses', list);
+router.get('/expenses/:id', get);
+router.post('/expenses', insert);
+router.put('/expenses/:id', update);
+router.delete('/expenses/:id', remove);
 
 module.exports = router;

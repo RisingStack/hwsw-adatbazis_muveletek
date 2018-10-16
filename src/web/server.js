@@ -5,8 +5,8 @@ const helmet = require('helmet');
 const { promisify } = require('util');
 const http = require('http');
 const router = require('./router');
-const { port } = require('./config');
-const logger = require('./logger');
+const { port } = require('../config');
+const logger = require('../logger');
 
 const app = express();
 const server = http.createServer(app);
