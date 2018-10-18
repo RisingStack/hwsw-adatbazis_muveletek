@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const { promisify } = require('util');
 const http = require('http');
@@ -12,6 +13,7 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(cors());
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(helmet());
 
