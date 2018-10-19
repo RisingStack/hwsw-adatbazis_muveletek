@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(publicEndpoint);
+app.use(publicRouter);
 app.use(privateRouter);
 
 app.use((err, req, res, next) => {
