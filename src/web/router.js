@@ -4,31 +4,41 @@ const {
   get, list, insert, update, remove,
 } = require('./expenseHandler');
 const { register, login } = require('./userHandler');
-const auth = require('./auth/cookies');
+const auth = require('./auth/jwt');
 
-const router = Router();
+const publicRouter = Router();
+const privateRouter = Router();
 
-router.get('/', (req, res) => {
+privateRouter.use(auth);
+
+publicRouter.get('/', (req, res) => {
   res.send({
     message: 'OK',
   });
 });
 
-router.get('/currency', async (req, res) => {
+publicRouter.get('/currency', async (req, res) => {
   const result = await getCurrency();
 
   res.send({ message: 'ok', value: result.value });
 });
 
 // expense related endpoints
-router.get('/expenses', auth, list);
-router.get('/expenses/:id', get);
-router.post('/expenses', insert);
-router.put('/expenses/:id', update);
-router.delete('/expenses/:id', remove);
+privateRouter.get('/expenses', list);
+privateRouter.get('/expenses/:id', get);
+privateRouter.post('/expenses', insert);
+privateRouter.put('/expenses/:id', update);
+privateRouter.delete('/expenses/:id', remove);
 
 // user related endpoints
-router.post('/register', register);
-router.post('/login', login);
+publicRouter.post('/register', register);
+publicRouter.post('/login', login);
 
-module.exports = router;
+// HAZI: keszitsetek egy GET /me endpointot ami autentikacio altal vedett
+// es az eppen bejelentkezve levo userrrel ter vissza
+// (kiszedi a usert az adatbazisbol a req.user alapjan)
+
+module.exports = {
+  publicRouter,
+  privateRouter,
+};

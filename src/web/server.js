@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const { promisify } = require('util');
 const http = require('http');
-const router = require('./router');
+const { privateRouter, publicRouter } = require('./router');
 const { port } = require('../config');
 const logger = require('../logger');
 
@@ -22,7 +22,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(router);
+app.use(publicEndpoint);
+app.use(privateRouter);
 
 app.use((err, req, res, next) => {
   if (res.headersSent) {
@@ -34,15 +35,6 @@ app.use((err, req, res, next) => {
     message: 'Hiba tortent',
   });
 });
-
-// app.listen(port, (err) => {
-//   if (err) {
-//     logger.error(err);
-//     process.exit(1);
-//   }
-
-//   logger.info(`Az alkalmazas a következő URL-en érhető el: http://localhost:${port}`);
-// });
 
 const listenPromise = promisify(server.listen.bind(server, port));
 

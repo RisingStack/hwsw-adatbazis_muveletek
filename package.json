@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/nodemon -r dotenv/config src/index.js"
+    "start": "./node_modules/.bin/nodemon -r dotenv/config src/index.js",
+    "build-toc": "markdown-toc -i README.md"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,8 @@
     "express": "^4.16.3",
     "helmet": "^3.14.0",
     "joi": "^14.0.0",
+    "jsonwebtoken": "^8.3.0",
+    "markdown-toc": "^1.2.0",
     "mongodb": "^3.1.8",
     "prettier": "^1.14.3",
     "prettier-eslint": "^8.8.2",
