@@ -12,9 +12,11 @@ const privateRouter = Router();
 privateRouter.use(auth);
 
 publicRouter.get('/', (req, res) => {
-  res.send({
-    message: 'OK',
-  });
+  setTimeout(() => {
+    res.send({
+      message: 'OK',
+    });
+  }, 2000)
 });
 
 publicRouter.get('/currency', async (req, res) => {

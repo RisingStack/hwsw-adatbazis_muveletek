@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/nodemon -r dotenv/config src/index.js",
+    "start": "node -r dotenv/config src/index.js",
+    "start:dev": "node -r dotenv/config src/index.js",
     "build-toc": "markdown-toc -i README.md"
   },
   "keywords": [],

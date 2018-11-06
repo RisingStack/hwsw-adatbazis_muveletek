@@ -38,6 +38,15 @@ app.use((err, req, res, next) => {
 
 const listenPromise = promisify(server.listen.bind(server, port));
 
+function shutdown(cleanup) {
+  console.log('Bejovo kapcsolatokat visszautasitjuk');
+  server.close(() => {
+    console.log('Nincs tobb bejovo kapcsolat');
+    cleanup();
+  });
+}
+
 module.exports = {
   init: listenPromise,
+  shutdown,
 };
