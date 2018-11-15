@@ -1,3 +1,13 @@
+# Konfiguracio (.env)
+
+```
+CURRENCY_API_KEY=9ad4e5b0
+LOG_LEVEL=debug
+DB_URI=mongodb://felhasznalo:jelszo@host:port/adatbazis_neve
+PORT=3000
+JWT_SECRET=VERY_SECRET
+```
+
 # HWSW training gyakorlatok
 
 <!-- Do not edit the Table of Contents, instead regenerate with `npm run build-toc` -->
