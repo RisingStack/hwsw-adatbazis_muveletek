@@ -11,7 +11,10 @@ const configSchema = joi
   .unknown()
   .required();
 
-const validatedConfig = joi.attempt(process.env, configSchema);
+let validatedConfig = {};
+if (process.env.NODE_ENV !== 'test') {
+  validatedConfig = joi.attempt(process.env, configSchema);
+}
 
 const config = {
   port: validatedConfig.PORT,

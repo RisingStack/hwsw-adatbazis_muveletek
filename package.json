@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node -r dotenv/config src/index.js",
     "start:dev": "node -r dotenv/config src/index.js",
     "build-toc": "markdown-toc -i README.md"
@@ -34,8 +34,19 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.0",
+    "jest": "^23.6.0",
     "loadenv": "^2.2.0",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "supertest": "^3.3.0"
+  },
+  "jest": {
+    "restoreMocks": true,
+    "setupTestFrameworkScriptFile": "<rootDir>/test/setup.js",
+    "coverageThreshold": {
+      "global": {
+        "lines": 70
+      }
+    }
   },
   "description": ""
 }
